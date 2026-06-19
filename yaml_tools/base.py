@@ -13,7 +13,7 @@ import base64
 from openai import OpenAI, AzureOpenAI  #type: ignore
 import asyncio
 import os
-from vida.utils.config import AZURE_AI_API_KEY,github_token,azure_config,REPO_OWNER,TERRAFORM_MODULES_REPO
+from vida.utils.config import github_token,azure_config,REPO_OWNER,TERRAFORM_MODULES_REPO
 from vida.utils.github_client import get_github_client
 from vida.adapters.github.git_write import set_github_secret
 from vida.adapters.github.git_read import wait_for_latest_workflow,github_read_contents
