@@ -23,7 +23,9 @@ from github import Github #type: ignore
 from vida.adapters.github.git_read import get_artifact_name_from_run
 from vida.utils.secrets_ext import extract_github_secrets
 # auth = Auth.Token(github_token)
-# g = get_github_client() 
+# g = get_github_client()
+
+# remove this  
 print("github_token:", github_token)
 rg = get_github_client(github_token)
 
@@ -36,6 +38,7 @@ logger = get_logger(__name__)
 
 def github_read_yaml_library(FILE_PATH="file-paths-registry.yml", g: Github = rg):
     
+    #remove this
     REPO_NAME = "Yaml-Templates"
     repo = rg.get_repo(f"{REPO_OWNER}/{REPO_NAME}")
     file = repo.get_contents(f"{FILE_PATH}")
@@ -99,8 +102,8 @@ def github_push_files(files_to_push, repo_name, commit_message, branch="main", g
 import time
 
 @tool(name="CI_builder", description=str(ToolDescriptionPrompt("ci-builder-tool-description")), approval_mode="never_require")
-async def CI_Builder(tool: Annotated[str, Field(description="The CI tool to used for the application the tool name should be in lower case without spaces, the sapce should be replaces with '_' .Example : github_actions")],
-                     techstack: Annotated[str, Field(description="The tech stack that is used to develop the application and in the repository, The tech stack name should be in lower case. Example : python")],
+async def CI_Builder(tool: Annotated[str, Field(description="The CI tool to used for the application the tool name should be in lower case without spaces, the sapce should be replaces with '_' .")],
+                     techstack: Annotated[str, Field(description="The tech stack that is used to develop the application and in the repository, The tech stack name should be in lower case")],
                      repo_name: Annotated[str, Field(description="The repository name")],
                      branch_name: Annotated[str, Field(description="The branch name")]):
     # Assuming Tech stack, tool, Repository name and Framework comes from the orchestrator agent

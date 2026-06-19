@@ -13,5 +13,8 @@ async def yaml_agent_call(request: terraform_agent_request):
         session=session
     )
     # print(vars(session))
-    print(agent._session.session_id)
-    return response
+    # print(agent._session.session_id)
+    return {
+        "raw": response,
+        "output": response.text
+    }
