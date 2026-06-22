@@ -1,7 +1,7 @@
 from yaml_agent import YamlAgent
 from vida.models.requests.Agents_requests import terraform_agent_request
 from fastapi import APIRouter
-import json
+from vida.utils.preprocess import try_parse_json
 
 router = APIRouter()
 
@@ -15,7 +15,9 @@ async def yaml_agent_call(request: terraform_agent_request):
     )
     # print(vars(session))
     # print(agent._session.session_id)
+    output, is_json = try_parse_json(response.text)
     return {
         "raw": response,
-        "output": response.text
+        "is_json": is_json,
+        "output": output
     }
