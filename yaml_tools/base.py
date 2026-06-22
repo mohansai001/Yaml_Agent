@@ -26,7 +26,7 @@ from vida.utils.secrets_ext import extract_github_secrets
 # g = get_github_client()
 
 # remove this  
-print("github_token:", github_token)
+# print("github_token:", github_token)
 rg = get_github_client(github_token)
 
 # from vida.utils.clientConnection import get_client
@@ -302,7 +302,7 @@ async def TF_Builder(cloud_provider: Annotated[str, Field(description="The cloud
         tf_yml_template=github_read_contents(template_path, repo_owner=REPO_OWNER, repo_name="Yaml-Templates")
         tf_secrets = extract_github_secrets(tf_yml_template)
         logger.info("[TF_Builder] Preparing prompt for Terraform YAML generation.")
-        print("Azure Secret keys:", list(azure_config.keys()))
+        # print("Azure Secret keys:", list(azure_config.keys()))
         # print("[TF_Builder] Preparing prompt for Terraform YAML generation.")
         prompt = f"You are a senior Devops Platform Engineer. Generate a Terraform pipeline yml for {cloud_provider} with the following details:\n\n"
         prompt += f"Resource Group: {resource_group}\n"
