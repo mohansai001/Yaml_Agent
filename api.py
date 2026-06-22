@@ -1,6 +1,7 @@
 from yaml_agent import YamlAgent
 from vida.models.requests.Agents_requests import terraform_agent_request
 from fastapi import APIRouter
+import json
 
 router = APIRouter()
 
@@ -16,5 +17,5 @@ async def yaml_agent_call(request: terraform_agent_request):
     # print(agent._session.session_id)
     return {
         "raw": response,
-        "output": response.text
+        "output": json.loads(response.text)
     }
