@@ -13,7 +13,7 @@ logger = get_logger(__name__)
 class YamlAgent(Base_Agent):
     name = "yaml_agent"
     instructions = str(AgentInstructionPrompt("yaml-agent-instructions"))
-    tools = [CI_Builder,CD_Builder,TF_Builder,yaml_update]
+    tools = [CI_Builder,CD_Builder,TF_Builder]
 
 _yaml_agent_field = ToolFieldsPrompt("yaml-agent-field-description")
 
