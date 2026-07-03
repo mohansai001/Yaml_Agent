@@ -364,5 +364,21 @@ async def TF_Builder(cloud_provider: Annotated[str, Field(description="The cloud
         }
         # print(f"[TF_Builder] Error occurred while creating Terraform pipeline: {e}")
 
-def yaml_update():
-    pass
+@tool(name="Generic yaml AI", description=str(ToolDescriptionPrompt("generic-yaml-tool-description")), approval_mode="never_require")
+def Generic_yaml(prompt:Annotated[str, Field(description="Prompt for generating generic YAML files from the provided data. Do not use for CI/CD pipeline or Terraform YAML files.")]):
+    logger.info("[Generic_Yaml] Tool called.")
+    wrapper = GeneratorPrompt("generic-yaml-prompt-generator")
+    instructions = wrapper.render(prompt=prompt)
+    try:
+        status,yaml_script,message = create_yaml_scripts(instructions)
+        logger.info(f"[Generic_Yaml] Generic YAML generation completed.")
+        return {"TASK COMPLETED": {yaml_script},
+                "Status": {status},
+                "message": {message}
+                }
+    
+    except Exception as e:
+        logger.error(f"[Generic_Yaml] Error occurred while creating yaml script: {e}", exc_info=True)
+        return {
+            "Error": str(e)
+        }

@@ -1,6 +1,6 @@
 from vida.utils.logger import get_logger
 logger = get_logger(__name__)
-from yaml_tools.base import CI_Builder,CD_Builder,TF_Builder, yaml_update
+from yaml_tools.base import CI_Builder,CD_Builder,TF_Builder, Generic_yaml
 from agent_framework import tool #type: ignore
 from typing import Annotated
 from pydantic import Field
@@ -13,7 +13,7 @@ logger = get_logger(__name__)
 class YamlAgent(Base_Agent):
     name = "yaml_agent"
     instructions = str(AgentInstructionPrompt("yaml-agent-instructions"))
-    tools = [CI_Builder,CD_Builder,TF_Builder]
+    tools = [CI_Builder,CD_Builder,TF_Builder,Generic_yaml]
 
 _yaml_agent_field = ToolFieldsPrompt("yaml-agent-field-description")
 
